@@ -46,8 +46,35 @@ public class MemoController {
     }
 
     // 메모 변경하기
-//    @PutMapping("/memos/{id}")
+    @PutMapping("/memos/{id}")
+    public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
+        // 업데이트 할 메모의 {id}를 받아옴, 수정된 정보를 JSON으로 받아옴
+
+        // 1. 해당 메모가 DB에 존재하는지 확인하기
+        if (memoList.containsKey(id)) {
+            // 해당 메모 가져오기
+            Memo memo = memoList.get(id); // id에 맞는 memo 객체가 반환된다
+
+            // 메모 수정하기
+            memo.update(requestDto);    // update() 메서드 생성하기
+            return memo.getId();        // id 를 리턴함
+        } else {
+            throw new IllegalArgumentException("선택한 메모는 존재하지 않습니다");
+        }
+
+    }
 
     // 메모 삭제하기
-//    @DeleteMapping("/memos/{id}")
+    @DeleteMapping("/memos/{id}")
+    public Long deleteMemo(@PathVariable Long id) {   // 지우는거라 body는 필요없음
+        // 해당 메모가 DB에 존재하는지 확인
+        if (memoList.containsKey(id)) {
+            // 해당 메모를 삭제하기
+            memoList.remove(id);    // 키 값으로 바로 삭제하기
+            return id;
+        } else {
+            throw new IllegalArgumentException("선택한 메모는 존재하지 않습니다.");
+        }
+
+    }
 }

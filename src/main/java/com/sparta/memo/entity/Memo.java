@@ -19,4 +19,9 @@ public class Memo {
         this.contents = requestDto.getContents();
         // Memo 클래스의 username,contents에 받아온 값을 넣어서 Memo객체를 생성해낸다.
     }
+
+    public void update(MemoRequestDto requestDto) {         // PutMapping에서 update() 생성함
+        this.username = requestDto.getUsername();
+        this.contents = requestDto.getContents();
+    }
 }
