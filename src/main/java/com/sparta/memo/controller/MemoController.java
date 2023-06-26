@@ -12,11 +12,15 @@ import java.util.List;
 @RequestMapping("/api")
 public class MemoController {
 
-    private final JdbcTemplate jdbcTemplate;    // 데이터베이스
+//    private final JdbcTemplate jdbcTemplate;    // 데이터베이스
+    private final MemoService memoService;
 
     public MemoController(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+//        this.jdbcTemplate = jdbcTemplate;
+        this.memoService = new MemoService(jdbcTemplate);
     }
+
+    /* */
 
     // 메모 생성하기
     // 데이터는 boby에 JSON형태로 넘어옴
@@ -30,7 +34,9 @@ public class MemoController {
         // 1. Service
         // 다른 클래스의 매서드를 호출하려면 해당 클래스를 객체로 만들어야 함(인스턴스화 진행)
         // MemoService 객체 만들기
-        MemoService memoService = new MemoService(jdbcTemplate);  // ()에 jdbcTemplate을 넣어줘야 함
+
+        //     중복제거
+//     MemoService memoService = new MemoService(jdbcTemplate);  // ()에 jdbcTemplate을 넣어줘야 함
         return memoService.creatMemo(requestDto); // 컨트롤러의 메서드 이름과 서비스의 이름을 일치시키면 직관적으로 이해하기 편함
         // 컨트롤러 creatMemo에서 전달받아서 비지니스 로직을 수행하는 메서드라는걸 알 수 있음
         // 1. 컨트롤러가 가져온 requestDto을 들고가야함.
@@ -44,7 +50,7 @@ public class MemoController {
     public List<MemoResponseDto> getMemos() {
 
         // service
-        MemoService memoService = new MemoService(jdbcTemplate);
+//        MemoService memoService = new MemoService(jdbcTemplate);
         return memoService.getMemos(); // 보내줄 데이터는 없어서 파리미터에 넣을 값도 없음
     }
 
@@ -53,7 +59,7 @@ public class MemoController {
     public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
         // 업데이트 할 메모의 {id}를 받아옴, 수정된 정보를 JSON으로 받아옴
 
-        MemoService memoService = new MemoService(jdbcTemplate);
+//        MemoService memoService = new MemoService(jdbcTemplate);
         return memoService.getupdateMemo(id, requestDto);       // id와 수정할 데이터를 넣어준다
     }
 
@@ -61,7 +67,7 @@ public class MemoController {
     @DeleteMapping("/memos/{id}")
     public Long deleteMemo(@PathVariable Long id) {  // 지우는거라 body는 필요없음
 
-        MemoService memoService = new MemoService(jdbcTemplate);
+//        MemoService memoService = new MemoService(jdbcTemplate);
         return memoService.deleteService(id);
     }
 }
