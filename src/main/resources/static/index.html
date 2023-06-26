@@ -206,6 +206,7 @@
     }
   </style>
   <script>
+
     // 사용자가 내용을 올바르게 입력하였는지 확인합니다.
     function isValidContents(contents) {
       if (contents == '') {
@@ -336,6 +337,9 @@
       });
     }
 
+
+
+
     // 메모를 수정합니다.
     function submitEdit(id) {
       // 1. 작성 대상 메모의 username과 contents 를 확인합니다.
@@ -379,6 +383,16 @@
 </head>
 
 <body>
+<h2>GET /star/{name}/age/{age}</h2>
+<form id="helloPathForm">
+  <div>
+    이름: <input name="name" type="text">
+  </div>
+  <div>
+    나이: <input name="age" type="text">
+  </div>
+</form>
+
 <div class="background-header">
 
 </div>
