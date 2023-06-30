@@ -3,7 +3,6 @@ package com.sparta.memo.controller;
 import com.sparta.memo.dto.MemoRequestDto;
 import com.sparta.memo.dto.MemoResponseDto;
 import com.sparta.memo.service.MemoService;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +14,10 @@ public class MemoController {
 //    private final JdbcTemplate jdbcTemplate;    // 데이터베이스
     private final MemoService memoService;
 
-    public MemoController(JdbcTemplate jdbcTemplate) {
+    public MemoController(MemoService memoService) {  // 만들어진 memoService를 외부에서 받아서 넣는다-약한결합
+        // jdbcTemplate은 원래 repository에서 쓰려고 계속 가져오던것임
 //        this.jdbcTemplate = jdbcTemplate;
-        this.memoService = new MemoService(jdbcTemplate);
+        this.memoService = memoService;
     }
 
     /* */

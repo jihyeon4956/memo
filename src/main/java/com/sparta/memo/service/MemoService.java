@@ -4,7 +4,6 @@ import com.sparta.memo.dto.MemoRequestDto;
 import com.sparta.memo.dto.MemoResponseDto;
 import com.sparta.memo.entity.Memo;
 import com.sparta.memo.repository.MemoRepository;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
@@ -16,8 +15,8 @@ public class MemoService {
     // ★ IoC, DI 에 따라 코드 재생성
     private final MemoRepository memoRepository; // 아래에서 사용할 수 있게 생성한다.
 
-    public MemoService(JdbcTemplate jdbcTemplate) {
-        this.memoRepository = new MemoRepository(jdbcTemplate);
+    public MemoService(MemoRepository memoRepository) {
+        this.memoRepository = memoRepository;
         // 메모 서비스가 생성자를 통해서 생성될 때 파라미터로 jdbcTemplate를 받아오고 만든다.
 //        this.jdbcTemplate = jdbcTemplate;
     }
