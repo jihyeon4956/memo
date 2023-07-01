@@ -4,9 +4,13 @@ import com.sparta.memo.dto.MemoRequestDto;
 import com.sparta.memo.dto.MemoResponseDto;
 import com.sparta.memo.entity.Memo;
 import com.sparta.memo.repository.MemoRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// Bean으로 등록함-생성자 주입
+@Service
 public class MemoService {
     //    private final JdbcTemplate jdbcTemplate;    // 데이터베이스
     // 이 필드는  new MemoRepository(jdbcTemplate);를 구현할때 생성자 파라미터로 쓰려고 선언했음

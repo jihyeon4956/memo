@@ -2,6 +2,7 @@ package com.sparta.memo.dto;
 
 import com.sparta.memo.entity.Memo;
 import lombok.Getter;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Getter
 public class MemoResponseDto {

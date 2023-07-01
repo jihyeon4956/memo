@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,12 +19,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+@Repository  // Bean으로 등록함-생성자 주입
 public class MemoRepository {
 
     private final JdbcTemplate jdbcTemplate;    // 데이터베이스
 
     public MemoRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;       // 파라미터로 받아온걸 생성자에 넣어준다
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     // 생성
